@@ -1,0 +1,90 @@
+      <!DOCTYPE html>
+      <html lang="en"
+        <head>
+          <meta charset="UTF-8" />
+          <link href="style.css" rel="stylesheet" />
+          <title>Menaxhimi i Bookmark-eve</title>
+        </head>
+        <body>
+          <h1>Menaxhimi i Bookmark-eve</h1>
+
+          <form id="bookmarkForm">
+            <label for="urlInput">URL:</label>
+            <input type="text" id="urlInput" required /><br /><br />
+
+            <label for="titleInput">Titulli:</label>
+            <input type="text" id="titleInput" required /><br /><br />
+
+            <label for="descriptionInput">Përshkrimi:</label><br />
+            <textarea id="descriptionInput" rows="4" cols="50"></textarea><br /><br />
+
+            <button type id="button" ="button" onclick="addBookmark()">
+              Shto Bookmark
+            </button>
+          </form>
+          <nav>
+            <h2>Lista e Bookmark-eve:</h2>
+            <ul id="bookmarkList"></ul>
+
+            <script>
+              let bookmarks = [];
+
+              function addBookmark() {
+                const url = document.getElementById("urlInput").value;
+                const title = document.getElementById("titleInput").value;
+                const description = document.getElementById("descriptionInput").value;
+
+                const newBookmark = {
+                  url: url,
+                  title: title,
+                  description: description,
+                };
+
+                bookmarks.push(newBookmark);
+                bookmarks.sort((a, b) => a.title.localeCompare(b.title)); // Renditja alfabetike sipas titullit
+
+                displayBookmarks();
+                saveBookmarks();
+              }
+
+              function deleteBookmark(index) {
+                bookmarks.splice(index, 1);
+                displayBookmarks();
+                saveBookmarks();
+              }
+
+              function displayBookmarks() {
+                const list = document.getElementById("bookmarkList");
+                list.innerHTML = "";
+
+                bookmarks.forEach((bookmark, index) => {
+                  id = "delete";
+                  const listItem = document.createElement("li");
+                  listItem.innerHTML = `
+                <a href="${bookmark.url}" target="_blank">${bookmark.title}</a> - ${bookmark.description}
+                <button onclick="deleteBookmark(${index})">Fshi</button>
+              `;
+                  list.appendChild(listItem);
+                });
+              }
+
+              function saveBookmarks() {
+                localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+              }
+
+              function loadBookmarks() {
+                const storedBookmarks = localStorage.getItem("bookmarks");
+                if (storedBookmarks) {
+                  bookmarks = JSON.parse(storedBookmarks);
+                  displayBookmarks();
+                }
+              }
+
+              loadBookmarks();
+            </script>
+          </nav>
+        </body>
+        <footer>
+          <p>Copyright &copy;2023 Devis Sherifaj</p>
+        </footer>
+      </html>

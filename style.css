@@ -1,0 +1,46 @@
+h1,
+h2 {
+  font-size: 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #1ccb3f;
+  border: 5px solid #1a0850;
+  background-color: aquamarine;
+  text-align: center;
+}
+body {
+  background-color: #14116164;
+  color: #9f1b26;
+}
+
+#bookmarkForm {
+  font-size: 25px;
+  font-family: sans-serif;
+  color: rgb(4, 29, 21);
+  background-color: black;
+}
+
+#delete {
+  font-size: 25px;
+  font-family: sans-serif;
+  color: black;
+  background-color: aquamarine;
+  border: 5px solid #411eaa;
+}
+nav {
+  font-size: 25px;
+  font-family: sans-serif;
+  color: black;
+  background-color: rgb(123, 42, 51);
+  border-top: 5px solid #411eaa;
+  border-bottom: 5px solid #411eaa;
+}
+footer {
+  font-size: 20px;
+  font-family: sans-serif;
+  color: rgb(49, 84, 2);
+  background-color: aquamarine;
+}
+html {
+  background-color: bisque;
+}
